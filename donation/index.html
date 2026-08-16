@@ -17,12 +17,11 @@
 <style>
   :root{
     --ink:#131E38;
-    --ink-soft:#2C3A5C;
+    --ink-mid:#3E4A69;
+    --ink-soft:#78829C;
     --paper:#FBFAF7;
-    --paper-dim:#F0EDE6;
-    --light:#E3B23C;
-    --light-soft:#F4E3B8;
-    --rule:rgba(19,30,56,.14);
+    --line:rgba(19,30,56,.11);
+    --gold:#C99A34;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
@@ -30,130 +29,141 @@
     background:var(--paper);
     color:var(--ink);
     font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-    font-size:16.5px;
-    line-height:1.85;
-    letter-spacing:-.01em;
+    font-size:17px;
+    line-height:1.95;
+    letter-spacing:-.012em;
     word-break:keep-all;
   }
-  .wrap{max-width:600px;margin:0 auto}
+  .wrap{max-width:540px;margin:0 auto}
 
-  /* ── hero ── */
-  .hero{
+  /* ── 표제 ── */
+  .head{
     background:var(--ink);
     color:var(--paper);
-    padding:52px 26px 44px;
-    position:relative;
-    overflow:hidden;
+    padding:64px 30px 58px;
   }
-  .eyebrow{
-    font-size:12.5px;
-    letter-spacing:.22em;
-    color:var(--light);
+  .badge{
+    display:inline-block;
+    font-size:12px;
     font-weight:600;
-    margin-bottom:22px;
+    letter-spacing:.14em;
+    color:var(--ink);
+    background:var(--gold);
+    padding:5px 11px;
+    border-radius:3px;
   }
-  .hero h1{
+  .head h1{
+    margin-top:24px;
     font-family:"Nanum Myeongjo",serif;
     font-weight:800;
-    font-size:clamp(34px,10vw,46px);
-    line-height:1.32;
-    letter-spacing:-.02em;
+    font-size:clamp(29px,7.6vw,37px);
+    line-height:1.45;
+    letter-spacing:-.028em;
   }
-  .hero h1 em{font-style:normal;color:var(--light)}
-  .hero .when{
-    margin-top:20px;
-    font-size:15px;
-    color:rgba(251,250,247,.72);
-    letter-spacing:.01em;
+  .head .date{
+    margin-top:26px;
+    padding-top:22px;
+    border-top:1px solid rgba(251,250,247,.18);
+    font-size:14.5px;
+    letter-spacing:.02em;
+    color:rgba(251,250,247,.66);
   }
 
-  /* ── signature: 100 marks ── */
-  .marks{
-    margin-top:34px;
-    display:grid;
-    grid-template-columns:repeat(20,1fr);
-    gap:5px;
-    max-width:320px;
+  /* ── 사진첩 ── */
+  .album{padding:38px 0 0}
+  .album-cap{
+    padding:0 30px;
+    font-size:13px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
   }
-  .marks i{
+  .album-cap .count{
+    font-variant-numeric:tabular-nums;
+    letter-spacing:.04em;
+  }
+  .track{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:0 30px;
+  }
+  .track::-webkit-scrollbar{display:none}
+  .track figure{
+    flex:0 0 82%;
+    scroll-snap-align:center;
+    margin:0;
+  }
+  .track figure:last-child{margin-right:30px}
+  .track img{
     display:block;
-    aspect-ratio:1;
-    border-radius:50%;
-    background:rgba(251,250,247,.26);
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:12px;
+    background:#E7E4DD;
   }
-  .marks i.now{
-    background:var(--light);
-    box-shadow:0 0 0 3px rgba(227,178,60,.24);
-  }
-  .marks-cap{
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:7px;
     margin-top:16px;
+  }
+  .dots span{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:rgba(19,30,56,.18);
+    transition:background .2s ease,width .2s ease;
+  }
+  .dots span.on{background:var(--gold);width:18px;border-radius:3px}
+  .swipe-hint{
+    text-align:center;
     font-size:12.5px;
-    color:rgba(251,250,247,.55);
+    color:var(--ink-soft);
+    margin-top:12px;
     letter-spacing:.02em;
   }
 
-  /* ── letter ── */
-  .letter{padding:44px 26px 8px}
-  .letter p{margin-bottom:22px}
+  /* ── 편지 ── */
+  .letter{padding:44px 30px 0}
+  .letter p{margin-bottom:26px}
   .salute{font-weight:600}
-  .lede{
-    font-family:"Nanum Myeongjo",serif;
-    font-size:19px;
-    line-height:1.8;
-  }
-  .rule{
-    height:1px;
-    background:var(--rule);
-    margin:32px 0;
-  }
 
-  /* ── ask ── */
-  .ask{
-    padding:0 26px;
-  }
-  .ask-lead{
-    background:var(--paper-dim);
-    border-left:3px solid var(--light);
-    padding:20px 22px;
-    margin-bottom:30px;
-    font-size:16px;
-  }
-  .unit{
-    text-align:center;
-    padding:6px 0 4px;
-  }
-  .unit .n{
-    font-family:"Nanum Myeongjo",serif;
-    font-size:40px;
-    font-weight:800;
-    line-height:1.1;
-    letter-spacing:-.02em;
-  }
-  .unit .n small{font-size:20px;font-weight:700;margin-left:2px}
-  .unit .sub{font-size:14.5px;color:var(--ink-soft);margin-top:8px}
-
-  /* ── account ── */
-  .acct{
-    margin:26px 0 0;
-    border:1px solid var(--rule);
-    border-radius:14px;
+  .card{
+    margin:36px 0 34px;
+    border:1px solid var(--line);
+    border-radius:16px;
     overflow:hidden;
     background:#fff;
   }
-  .acct-row{
-    padding:16px 18px;
-    border-bottom:1px solid var(--rule);
-  }
-  .acct-row:last-child{border-bottom:0}
-  .acct-label{
-    font-size:12.5px;
-    letter-spacing:.1em;
+  .card-row{padding:19px 21px;border-bottom:1px solid var(--line)}
+  .card-label{
+    font-size:12px;
+    letter-spacing:.13em;
     color:var(--ink-soft);
     font-weight:600;
-    margin-bottom:6px;
+    line-height:1.4;
+    margin-bottom:8px;
   }
-  .acct-val{font-size:18px;font-weight:600;letter-spacing:.01em}
-  .acct-note{font-size:14px;color:var(--ink-soft);margin-top:5px}
+  .card-val{
+    font-size:19px;
+    font-weight:600;
+    line-height:1.5;
+    letter-spacing:.004em;
+  }
+  .card-note{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    line-height:1.6;
+  }
   .copy{
     display:block;
     width:100%;
@@ -161,30 +171,30 @@
     background:var(--ink);
     color:var(--paper);
     font-family:inherit;
-    font-size:16px;
+    font-size:16.5px;
     font-weight:600;
-    padding:17px;
+    padding:18px;
     cursor:pointer;
-    letter-spacing:.01em;
     transition:background .18s ease;
   }
-  .copy:hover{background:var(--ink-soft)}
-  .copy:focus-visible{outline:3px solid var(--light);outline-offset:-3px}
-  .copy.done{background:var(--light);color:var(--ink)}
+  .copy:hover{background:var(--ink-mid)}
+  .copy:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+  .copy.done{background:var(--gold);color:var(--ink)}
 
-  /* ── close ── */
-  .close{padding:34px 26px 0}
-  .close p{margin-bottom:22px}
-  .pledge{
+  .thanks{
     font-family:"Nanum Myeongjo",serif;
-    font-size:18px;
+    font-size:19.5px;
     line-height:1.8;
-    padding:22px 0 0;
-    border-top:1px solid var(--rule);
+    letter-spacing:-.02em;
+    margin-top:38px !important;
+    padding-top:34px;
+    border-top:1px solid var(--line);
   }
+
   .sign{
-    padding:30px 26px 56px;
+    padding:30px 30px 68px;
     font-size:14.5px;
+    line-height:1.7;
     color:var(--ink-soft);
   }
   .sign strong{
@@ -192,101 +202,138 @@
     color:var(--ink);
     font-size:16px;
     font-weight:700;
-    margin-bottom:4px;
+    margin-bottom:6px;
   }
 
-  .rise{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.22,.68,.36,1) forwards}
-  .rise:nth-of-type(2){animation-delay:.08s}
-  @keyframes rise{to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){
-    .rise{animation:none;opacity:1;transform:none}
-  }
   @media (min-width:601px){
-    body{font-size:17px}
-    .hero{padding:72px 44px 60px}
-    .letter,.ask,.close{padding-left:44px;padding-right:44px}
-    .sign{padding-left:44px;padding-right:44px}
+    .head{padding:80px 46px 66px}
+    .album-cap,.track{padding-left:46px;padding-right:46px}
+    .track figure:last-child{margin-right:46px}
+    .letter{padding-left:46px;padding-right:46px}
+    .sign{padding-left:46px;padding-right:46px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .track{scroll-behavior:auto}
+    .dots span{transition:none}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="hero">
-    <div class="eyebrow rise">2026. 09. 18. 금</div>
-    <h1 class="rise">백 번째<br>만남에<br><em>함께해 주세요</em></h1>
-    <p class="when">지난 10년, 매달 이어온 자리가<br>백 번째를 맞이합니다.</p>
-    <div class="marks" id="marks" aria-hidden="true"></div>
-    <p class="marks-cap">아흔아홉 번의 만남, 그리고 백 번째</p>
+  <header class="head">
+    <span class="badge">준비위원회</span>
+    <h1>100회 기념행사<br>준비에 함께해 주세요</h1>
+    <p class="date">2026년 9월 18일 금요일 저녁</p>
   </header>
 
   <main>
-    <section class="letter">
-      <p class="salute">회원 여러분께,</p>
-      <p class="lede">오는 9월 18일 금요일 저녁, 저희 모임이 100회를 맞이합니다.</p>
-      <p>그날 지난 10년을 담은 다큐멘터리를 함께 보고, 새로운 모임의 이름을 발표합니다. 각자 인생에 영감을 준 책을 한 권씩 가져오셔서 서로 나누는 시간도 준비하고 있습니다.</p>
-      <div class="rule"></div>
+
+    <section class="album">
+      <div class="album-cap">
+        <span>지난 10년의 기록</span>
+        <span class="count" id="count">1 / 5</span>
+      </div>
+      <div class="track" id="track">
+        <figure><img src="img/1.jpg" alt="모임 사진 1"></figure>
+        <figure><img src="img/2.jpg" alt="모임 사진 2"></figure>
+        <figure><img src="img/3.jpg" alt="모임 사진 3"></figure>
+        <figure><img src="img/4.jpg" alt="모임 사진 4"></figure>
+        <figure><img src="img/5.jpg" alt="모임 사진 5"></figure>
+      </div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <p class="swipe-hint">옆으로 넘겨 보세요</p>
     </section>
 
-    <section class="ask">
-      <div class="ask-lead">
-        영상 제작과 케이터링, 현장 준비까지 적지 않은 비용이 듭니다. 준비위원회가 자발적으로 결성된 만큼, 회원 여러분께서도 뜻을 보태 주시면 큰 힘이 되겠습니다.
-      </div>
+    <section class="letter">
+      <p class="salute">회원 여러분께,</p>
 
-      <div class="unit">
-        <div class="n">1구좌 10<small>만 원</small></div>
-        <p class="sub">한 구좌만으로도 충분히 감사합니다.<br>더 보태고 싶으신 분은 여러 구좌도 가능합니다 (최대 10구좌)</p>
-      </div>
+      <p>오는 9월 18일 금요일 저녁, 저희 모임이 100회를 맞이합니다.</p>
 
-      <div class="acct">
-        <div class="acct-row">
-          <div class="acct-label">입금 계좌</div>
-          <div class="acct-val">농협 352-2156-4592-63</div>
-          <div class="acct-note">예금주 이영옥</div>
+      <p>그날 지난 10년을 담은 다큐멘터리를 함께 보고, 새로운 모임의 이름을 발표합니다. 각자 인생에 영감을 준 책을 한 권씩 가져오셔서 서로 나누는 시간도 준비하고 있습니다.</p>
+
+      <p>영상 제작과 케이터링, 현장 준비까지 적지 않은 비용이 듭니다. 준비위원회가 자발적으로 결성된 만큼, 회원 여러분께서도 뜻을 보태 주시면 큰 힘이 되겠습니다.</p>
+
+      <p>1구좌는 10만 원입니다. 한 구좌만으로도 충분히 감사하며, 더 보태고 싶으신 분은 여러 구좌도 가능합니다(최대 10구좌).</p>
+
+      <div class="card">
+        <div class="card-row">
+          <p class="card-label">계좌</p>
+          <p class="card-val">농협 352-2156-4592-63</p>
+          <p class="card-note">예금주 이영옥</p>
         </div>
-        <div class="acct-row">
-          <div class="acct-label">입금자명</div>
-          <div class="acct-val">성함[100회]</div>
-          <div class="acct-note">예) 홍길동[100회]</div>
+        <div class="card-row">
+          <p class="card-label">입금자명</p>
+          <p class="card-val">성함[100회]</p>
+          <p class="card-note">예) 홍길동[100회]</p>
         </div>
         <button class="copy" id="copy" type="button">계좌번호 복사하기</button>
       </div>
-    </section>
 
-    <section class="close">
       <p>물론 참여 여부와 관계없이 행사는 모두 함께하는 자리입니다. 부담 갖지 마시고 그날 꼭 오셔서 자리를 빛내 주시면 그것으로 충분합니다.</p>
-      <p class="pledge">백 번의 만남을 만들어 오신<br>모든 분께 감사드립니다.</p>
+
+      <p class="thanks">백 번의 만남을 만들어 오신<br>모든 분께 감사드립니다.</p>
     </section>
 
     <footer class="sign">
-      <strong>100회 준비위원회 드림</strong>
+      <strong>— 100회 준비위원회 드림</strong>
       장소와 세부 일정은 확정되는 대로 다시 안내드리겠습니다.
     </footer>
   </main>
 </div>
 
 <script>
-  var m = document.getElementById('marks');
-  for (var i = 1; i <= 100; i++) {
-    var d = document.createElement('i');
-    if (i === 100) d.className = 'now';
-    m.appendChild(d);
-  }
+  /* 사진첩 */
+  (function () {
+    var track = document.getElementById('track');
+    var dots = document.getElementById('dots');
+    var count = document.getElementById('count');
+    var figs = track.getElementsByTagName('figure');
+    var total = figs.length;
+    var cur = 0;
 
-  var btn = document.getElementById('copy');
-  btn.addEventListener('click', function () {
+    for (var i = 0; i < total; i++) {
+      var s = document.createElement('span');
+      if (i === 0) s.className = 'on';
+      dots.appendChild(s);
+    }
+    var marks = dots.getElementsByTagName('span');
+
+    function update() {
+      var center = track.scrollLeft + track.clientWidth / 2;
+      var best = 0, min = Infinity;
+      for (var i = 0; i < total; i++) {
+        var f = figs[i];
+        var mid = f.offsetLeft + f.offsetWidth / 2;
+        var d = Math.abs(mid - center);
+        if (d < min) { min = d; best = i; }
+      }
+      if (best === cur) return;
+      marks[cur].className = '';
+      marks[best].className = 'on';
+      count.textContent = (best + 1) + ' / ' + total;
+      cur = best;
+    }
+
+    var tick;
+    track.addEventListener('scroll', function () {
+      if (tick) return;
+      tick = requestAnimationFrame(function () { update(); tick = null; });
+    }, { passive: true });
+  })();
+
+  /* 계좌 복사 */
+  (function () {
+    var btn = document.getElementById('copy');
     var text = '352-2156-4592-63';
-    var done = function () {
+    function done() {
       btn.textContent = '복사했습니다';
       btn.classList.add('done');
       setTimeout(function () {
         btn.textContent = '계좌번호 복사하기';
         btn.classList.remove('done');
       }, 2000);
-    };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(done).catch(fallback);
-    } else { fallback(); }
+    }
     function fallback() {
       var t = document.createElement('textarea');
       t.value = text;
@@ -297,7 +344,12 @@
       try { document.execCommand('copy'); done(); } catch (e) {}
       document.body.removeChild(t);
     }
-  });
+    btn.addEventListener('click', function () {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(fallback);
+      } else { fallback(); }
+    });
+  })();
 </script>
 </body>
 </html>
