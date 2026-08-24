@@ -89,41 +89,37 @@
 
   /* 특별강연 */
   .talk{
-    margin-top:32px;
+    margin-top:30px;
+    display:flex;
+    gap:14px;
+    align-items:center;
     text-align:left;
     background:#fff;
     border:1px solid var(--line);
-    border-radius:14px;
-    padding:24px 22px;
+    border-radius:12px;
+    padding:18px 16px;
   }
+  .talk-face{
+    width:74px;
+    height:74px;
+    flex:0 0 74px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center 20%;
+    display:block;
+    box-shadow:0 3px 12px rgba(19,30,56,.16);
+  }
+  .talk-txt{flex:1 1 auto;min-width:0}
   .talk-label{
     font-size:11.5px;
     letter-spacing:.16em;
     color:#A8801F;
     font-weight:700;
-    text-align:center;
-    display:block;
   }
-  .talk-who{
-    margin-top:18px;
-    display:flex;
-    gap:18px;
-    align-items:center;
-  }
-  .talk-who img{
-    width:84px;
-    height:84px;
-    flex:0 0 84px;
-    border-radius:50%;
-    object-fit:cover;
-    object-position:center 22%;
-    display:block;
-    box-shadow:0 3px 12px rgba(19,30,56,.16);
-  }
-  .talk-txt{flex:1 1 auto;min-width:0}
   .talk-name{
+    margin-top:7px;
     font-family:"Nanum Myeongjo",serif;
-    font-size:26px;
+    font-size:22px;
     font-weight:800;
     line-height:1.25;
     letter-spacing:-.025em;
@@ -132,43 +128,25 @@
     display:block;
     font-style:normal;
     font-family:"Pretendard Variable",Pretendard,sans-serif;
-    font-size:13.5px;
+    font-size:12.5px;
     font-weight:500;
     color:var(--ink-soft);
     letter-spacing:.02em;
-    margin-bottom:4px;
-  }
-  .talk-div{
-    height:1px;
-    background:var(--line);
-    margin:20px 0;
-  }
-  .talk-work{
-    display:flex;
-    gap:16px;
-    align-items:center;
-  }
-  .talk-work img{
-    width:62px;
-    flex:0 0 62px;
-    border-radius:3px;
-    display:block;
-    box-shadow:0 3px 12px rgba(19,30,56,.2);
+    margin-bottom:2px;
   }
   .talk-book{
-    flex:1 1 auto;
-    min-width:0;
-    font-size:15px;
-    font-weight:600;
-    line-height:1.55;
-    letter-spacing:-.015em;
+    margin-top:6px;
+    font-size:12.5px;
+    line-height:1.5;
+    color:var(--ink-mid);
+    letter-spacing:-.02em;
   }
-  .talk-book span{
+  .talk-cover{
+    width:58px;
+    flex:0 0 58px;
+    border-radius:3px;
     display:block;
-    font-size:13px;
-    font-weight:400;
-    color:var(--ink-soft);
-    margin-top:3px;
+    box-shadow:0 3px 12px rgba(19,30,56,.22);
   }
 
   .flow{
@@ -245,7 +223,6 @@
     line-height:1.55;
     margin-top:2px;
   }
-  .agenda .hi .c{font-weight:700}
 
   /* 안내 */
   .notes{
@@ -309,8 +286,11 @@
     .poster{padding:60px 46px 52px}
     section{padding-left:46px;padding-right:46px}
     .sign{padding-left:46px;padding-right:46px}
-    .talk-who img{width:96px;height:96px;flex:0 0 96px}
-    .talk-work img{width:70px;flex:0 0 70px}
+    .talk{gap:18px;padding:20px 18px}
+    .talk-face{width:86px;height:86px;flex:0 0 86px}
+    .talk-cover{width:68px;flex:0 0 68px}
+    .talk-name{font-size:24px}
+    .talk-book{font-size:13.5px}
   }
 </style>
 </head>
@@ -330,21 +310,13 @@
     </p>
 
     <div class="talk">
-      <span class="talk-label">특별강연</span>
-
-      <div class="talk-who">
-        <img src="img/speaker.jpg" alt="이광재 국회의원">
-        <div class="talk-txt">
-          <p class="talk-name"><em>국회의원</em>이광재</p>
-        </div>
+      <img class="talk-face" src="img/speaker.jpg" alt="이광재 국회의원">
+      <div class="talk-txt">
+        <p class="talk-label">특별강연</p>
+        <p class="talk-name"><em>국회의원</em>이광재</p>
+        <p class="talk-book">『국민을 부자로 만드는 나라』</p>
       </div>
-
-      <div class="talk-div"></div>
-
-      <div class="talk-work">
-        <img src="img/book.jpg" alt="국민을 부자로 만드는 나라 표지">
-        <p class="talk-book">『국민을 부자로 만드는 나라』<span>AI 시대, 유능한 정부의 길</span></p>
-      </div>
+      <img class="talk-cover" src="img/book.jpg" alt="국민을 부자로 만드는 나라 표지">
     </div>
 
     <p class="flow">
@@ -388,7 +360,7 @@
           <p class="t">19:40</p>
           <p class="c">기념 촬영</p>
         </div>
-        <div class="hi">
+        <div>
           <p class="t">19:45</p>
           <p class="c">특별강연<small>국회의원 이광재 · 『국민을 부자로 만드는 나라』</small></p>
         </div>
@@ -396,7 +368,7 @@
           <p class="t">20:25</p>
           <p class="c">기념 다큐멘터리 상영<small>지난 10년의 기록</small></p>
         </div>
-        <div class="hi">
+        <div>
           <p class="t">20:40</p>
           <p class="c">새 이름 공표<small>새로운 십 년을 함께할 이름</small></p>
         </div>
